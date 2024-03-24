@@ -8,16 +8,19 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
-import kotlinx.android.synthetic.main.activity_main.*
-
+//import kotlinx.android.synthetic.main.activity_main.*
+import com.example.videocallapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
 
     private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
     private val requestcode = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (!isPermissionGranted()) {
             askPermissions()
@@ -25,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         Firebase.initialize(this)
 
-        loginBtn.setOnClickListener {
-            val username = usernameEdit.text.toString()
+        binding.loginBtn.setOnClickListener {
+            val username = binding.usernameEdit.text.toString()
             val intent = Intent(this, CallActivity::class.java)
             intent.putExtra("username", username)
             startActivity(intent)

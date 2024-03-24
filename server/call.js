@@ -10,9 +10,9 @@ remoteVideo.onplaying = () => { remoteVideo.style.opacity = 1 }
 let peer
 function init(userId) {
     peer = new Peer(userId, {
-        host: '192.168.43.242',
+        host: '192.168.96.1',
         port: 9000,
-        path: '/videocallapp'
+        path: '/home/ubuntu/tal_video_call_app/android-video-call-app/videocallapp'
     })
 
     listen()
